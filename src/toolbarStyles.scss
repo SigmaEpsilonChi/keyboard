@@ -1,0 +1,53 @@
+$font-stack: Geneva, sans-serif;
+$background-color: #666;
+$base-color: #888;
+$disabled-color: #444;
+$hilight-color: #FFF;
+$selected-color: #F82;
+$text-color: #222;
+
+.toolbar {
+	font: $font-stack;
+	color: $text-color;
+
+	background-color: $background-color;
+	
+	display: flex;
+	flex-direction: row;
+
+	height: 40px;
+	flex-shrink: 0;
+
+	.button {
+		cursor: pointer;
+		background-color: $base-color;
+		transition: 0.2s;
+
+		text-align: center;
+	}
+
+	.button:hover {
+		background-color: $hilight-color;
+
+	}
+}
+
+.toolbar > div {
+	margin: 4px;
+	// height: 32px;
+}
+
+.rudder {
+	display: flex;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	border-radius: 16px;
+	user-select: none;
+}
+
+.rudder > .button {
+	width: 40px;
+	// line-height: 40px;
+}
