@@ -119,7 +119,7 @@ class Grid extends React.Component {
 		if (!this.container) {
 			window.addEventListener('resize', this.place.bind(this));
 		}
-		
+
 		this.container = div;
 		if (this.cellSize != this.props.cellSize) this.place();
 		/*
@@ -177,6 +177,7 @@ class Grid extends React.Component {
 			<div className='grid'
 				style={{
 					flexGrow: 1,
+					userSelect: 'none',
 				}}
 				ref={this.mount.bind(this)}
 				>
