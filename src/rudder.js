@@ -14,9 +14,14 @@ let Rudder = props => {
 	return (
 		<div className='rudder'
 			>
-			<div className='button' onClick={() => callback(interval == 0 ? -1 : (value-interval))}><div><img src={require('./img/left.png')}/></div></div>
-			<div className='label'><div>{label+': '+valueString}</div></div>
-			<div className='button' onClick={() => callback(interval == 0 ?  1 : (value+interval))}><div><img src={require('./img/right.png')}/></div></div>
+			<div className='label'>
+				<div className='labelName'>{label}</div>
+				<div className='labelValue'>{valueString}</div>
+			</div>
+			<div className='buttons'>
+				<div className='button' onClick={() => callback(interval == 0 ? -1 : (value-interval))}><div><img src={require('./img/left.png')}/></div></div>
+				<div className='button' onClick={() => callback(interval == 0 ?  1 : (value+interval))}><div><img src={require('./img/right.png')}/></div></div>
+			</div>
 		</div>
 	);
 }

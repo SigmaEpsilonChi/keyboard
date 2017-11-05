@@ -51,6 +51,7 @@ class Cell extends React.Component {
 		if (!this.state.pressed) {
 			this.press();
 		}
+		e.preventDefault();
 	}
 	up(e){
 		if (this.state.pressed) this.release();
@@ -137,6 +138,7 @@ class Cell extends React.Component {
 				// onClick={this.click.bind(this)}
 				onTouchStart={this.touchDown.bind(this)}
 				onTouchEnd={this.touchUp.bind(this)}
+				onTouchCancel={this.touchUp.bind(this)}
 				onMouseDown={this.mouseDown.bind(this)}
 				onMouseUp={this.mouseUp.bind(this)}
 				onMouseEnter={this.enter.bind(this)}

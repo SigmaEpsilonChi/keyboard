@@ -181,6 +181,8 @@ class Grid extends React.Component {
 					flexGrow: 1,
 					userSelect: 'none',
 					position: 'relative',
+					overflow: 'hidden',
+					userDrag: 'none',
 				}}
 				ref={this.mount.bind(this)}
 				>

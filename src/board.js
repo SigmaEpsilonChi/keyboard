@@ -84,6 +84,38 @@ let synthConfigs = {
 			}
 		}
 	},
+	wingz: {
+		constructor: Tone.Synth,
+		spec: {
+			"oscillator" : {
+				"type" : "fatsawtooth",
+				"count" : 3,
+				"spread" : 30
+			},
+			"envelope": {
+				"attack": 0.01,
+				"decay": 0.1,
+				"sustain": 0.5,
+				"release": 0.4,
+				"attackCurve" : "exponential"
+			},
+		}
+	},
+	saw: {
+		constructor: Tone.Synth,
+		spec: {
+			"oscillator" : {
+				"type" : "sawtooth",
+			},
+			"envelope": {
+				"attack": 0.01,
+				"decay": 0.1,
+				"sustain": 0.5,
+				"release": 0.4,
+				"attackCurve" : "exponential"
+			},
+		}
+	},
 }
 
 class Board extends React.Component {
@@ -94,11 +126,14 @@ class Board extends React.Component {
 
 		let synthId = 'boop';
 		let config = synthConfigs[synthId];
-		let synth = new Tone.PolySynth(16, config.constructor, config.spec).toMaster();
+		let synth = new Tone.PolySynth(10, config.constructor, config.spec).toMaster();
+
+		let cellSize = Math.floor(Math.min(window.innerWidth, window.innerHeight)/(5*12))*5;
+		// let cellSize = Math.floor(Math.min(window.innerWidth, window.innerHeight)/(5*8))*5;
 
 		this.state = {
 			vertical: false,
-			cellSize: 80,
+			cellSize,
 			xInterval: 4,
 			yInterval: 7,
 			rootNoteIndex: 20,
@@ -121,12 +156,12 @@ class Board extends React.Component {
 		this.setState({
 			...this.state,
 			synthId,
-			synth: new Tone.PolySynth(16, config.constructor, config.spec).toMaster(),
+			synth: new Tone.PolySynth(10, config.constructor, config.spec).toMaster(),
 		});
 	}
 	setCellSize(cellSize){
-		cellSize = Math.min(cellSize, 120);
-		cellSize = Math.max(cellSize, 20);
+		cellSize = Math.min(cellSize, 200);
+		cellSize = Math.max(cellSize, 10);
 		console.log("Setting cell size to %s", cellSize);
 		this.setState({
 			...this.state,

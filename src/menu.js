@@ -54,7 +54,7 @@ class Menu extends React.Component {
 
 				<div className='menu'>
 					<div className='openButton' onClick={this.setOpen.bind(this, !open)}><div><img src={require('./img/close.png')}/></div></div> :
-					{React.createElement(Rudder, {label: 'Key Size', callback: setCellSize, value: cellSize, interval: 10})}
+					{React.createElement(Rudder, {label: 'Key Size', callback: setCellSize, value: cellSize, interval: 5})}
 					{React.createElement(Rudder, {label: 'Synth', callback: setSynth, value: synthId, interval: 0})}
 					{React.createElement(Rudder, {label: 'Scale Root', callback: setScaleIndex, value: scaleIndex, valueString: noteStringsFromC[scaleIndex%12]})}
 					{React.createElement(Rudder, {label: 'Lowest Note', callback: setRootNoteIndex, value: rootNoteIndex})}
