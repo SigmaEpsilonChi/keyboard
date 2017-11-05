@@ -3,7 +3,9 @@ import * as d3 from 'd3';
 import _ from 'lodash';
 // import Tone from 'tone';
 
-let baseFill = '#FFF';
+let ivoryFill = '#FFF';
+let tonicFill = '#DDD';
+let ebonyFill = '#222';
 let pressedFill = '#F80';
 let disabledFill = '#668';
 
@@ -114,13 +116,17 @@ class Cell extends React.Component {
 			axialY,
 			path,
 			baseColor,
+			scaleIndex,
+			scaleBools,
 		} = this.props;
 
 		let {
 			pressed,
 		} = this.state;
 
-
+		let noteIndex = this.getNoteIndex();
+		let ivory = scaleBools[(noteIndex-scaleIndex)%scaleBools.length];
+		let tonic = (noteIndex-scaleIndex)%scaleBools.length == 0;
 		// let label = axialX+', '+axialY+'';
 		let label = this.getNoteString(false);
 		// let label = this.getNoteIndex();
@@ -140,7 +146,7 @@ class Cell extends React.Component {
 					cursor: disabled ? 'default' : 'pointer',
 					pointerEvents: disabled ? 'none' : 'auto',
 					userSelect: 'none',
-					transition: '0.2s',
+					// transition: '0.2s',
 				    WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
 				    MozTapHighlightColor: 'rgba(0, 0, 0, 0)',
 				}}
@@ -150,16 +156,21 @@ class Cell extends React.Component {
 					strokeWidth={1}
 					fill={disabled ? disabledFill :
 							pressed ? pressedFill :
-								baseFill
+								tonic ? tonicFill :
+									ivory ? ivoryFill :
+										ebonyFill
 					}
 					style={{
+						transition: '0.1s',
 					}}
 					/>
 				<text className='cellText'
 					alignmentBaseline='middle'
 					textAnchor='middle'
-					fontSize={size/3}
+					fontSize={size/2}
 					style={{
+						color: '#666',
+						opacity: 0.2,
 					}}
 					>
 					{label}

@@ -94,11 +94,12 @@ class Grid extends React.Component {
 		if (this.container) {
 			this.cellSize = this.props.cellSize;
 
-			console.log("Placing cells");
 
 			let width = this.container.clientWidth;
 			let height = this.container.clientHeight;
 			let aspect = height/width;
+
+			console.log("Placing cells. width=%s, height=%s", width, height);
 
 			d3.select(this.container)
 				.select('svg')
@@ -160,6 +161,8 @@ class Grid extends React.Component {
 			noteRange,
 			synth,
 			rootNoteIndex,
+			scaleIndex,
+			scaleBools,
 		} = this.props;
 
 		let {
@@ -177,10 +180,16 @@ class Grid extends React.Component {
 				style={{
 					flexGrow: 1,
 					userSelect: 'none',
+					position: 'relative',
 				}}
 				ref={this.mount.bind(this)}
 				>
-				<svg>
+				<svg style={{
+						position: 'absolute',
+						top: 0,
+						left: 0,
+					}}
+					>
 					{_.map(cells, c => React.createElement(Cell, {
 						...c,
 						xInterval,
@@ -188,6 +197,8 @@ class Grid extends React.Component {
 						noteRange,
 						synth,
 						rootNoteIndex,
+						scaleIndex,
+						scaleBools,
 					}))}
 				</svg>
 			</div>

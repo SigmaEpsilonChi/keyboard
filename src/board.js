@@ -6,7 +6,7 @@ import Menu from './menu';
 import Tone from 'tone';
 
 let synthConfigs = {
-	pwm: {
+	buzzz: {
 		constructor: Tone.Synth,
 		spec: {
 			"oscillator" : {
@@ -21,7 +21,7 @@ let synthConfigs = {
 			}
 		}
 	},
-	piano: {
+	boop: {
 		constructor: Tone.Synth,
 		spec: {
 			"oscillator": {
@@ -41,7 +41,7 @@ let synthConfigs = {
 			"volume": -20
 		}
 	},
-	square: {
+	bzzrt: {
 		constructor: Tone.Synth,
 		spec: {
 			"oscillator" : {
@@ -55,7 +55,7 @@ let synthConfigs = {
 			}
 		}
 	},
-	conga: {
+	donka: {
 		constructor: Tone.MembraneSynth,
 		spec: {
 			"pitchDecay" : 0.008,
@@ -67,7 +67,7 @@ let synthConfigs = {
 			}
 		}
 	},
-	fm: {
+	woop: {
 		constructor: Tone.FMSynth,
 		spec: {
 			"modulationIndex" : 12.22,
@@ -92,9 +92,9 @@ class Board extends React.Component {
 
 		this.noteRange = [0, 120];
 
-		let synthId = 'piano';
+		let synthId = 'boop';
 		let config = synthConfigs[synthId];
-		let synth = new Tone.PolySynth(10, config.constructor, config.spec).toMaster();
+		let synth = new Tone.PolySynth(16, config.constructor, config.spec).toMaster();
 
 		this.state = {
 			vertical: false,
@@ -102,6 +102,8 @@ class Board extends React.Component {
 			xInterval: 4,
 			yInterval: 7,
 			rootNoteIndex: 20,
+			scaleIndex: 0,
+			scaleBools: [true, false, true, false, true, true, false, true, false, true, false, true],
 			synth,
 			synthId,
 		}
@@ -119,7 +121,7 @@ class Board extends React.Component {
 		this.setState({
 			...this.state,
 			synthId,
-			synth: new Tone.PolySynth(10, config.constructor, config.spec).toMaster(),
+			synth: new Tone.PolySynth(16, config.constructor, config.spec).toMaster(),
 		});
 	}
 	setCellSize(cellSize){
@@ -138,6 +140,17 @@ class Board extends React.Component {
 			rootNoteIndex,
 		});
 	}
+	setScaleIndex(scaleIndex){
+		// rootNoteIndex = Math.max(rootNoteIndex, 0);
+
+		while (scaleIndex < 0) scaleIndex += 12;
+		scaleIndex = scaleIndex%12;
+
+		this.setState({
+			...this.state,
+			scaleIndex,
+		});
+	}
 	playNote(note){
 
 	}
@@ -153,6 +166,8 @@ class Board extends React.Component {
 
 			synth,
 			synthId,
+			scaleIndex,
+			scaleBools,
 			
 			rootNoteIndex,
 		} = this.state;
@@ -162,6 +177,7 @@ class Board extends React.Component {
 		let playNote = this.playNote.bind(this);
 		let setCellSize = this.setCellSize.bind(this);
 		let setRootNoteIndex = this.setRootNoteIndex.bind(this);
+		let setScaleIndex = this.setScaleIndex.bind(this);
 		let setSynth = this.setSynth.bind(this);
 
 		return (
@@ -174,6 +190,19 @@ class Board extends React.Component {
 					height: '100%',
 				}}
 				>
+				{React.createElement(Grid, {
+					vertical,
+					cellSize,
+					playNote,
+					xInterval,
+					yInterval,
+					noteRange,
+
+					synth,
+					scaleIndex,
+					scaleBools,
+					rootNoteIndex,
+				})}
 				{React.createElement(Menu, {
 					vertical,
 					cellSize,
@@ -184,20 +213,13 @@ class Board extends React.Component {
 
 					synthId,
 					rootNoteIndex,
+					scaleIndex,
+					scaleBools,
 
 					setSynth,
 					setCellSize,
+					setScaleIndex,
 					setRootNoteIndex,
-				})}
-				{React.createElement(Grid, {
-					vertical,
-					cellSize,
-					playNote,
-					xInterval,
-					yInterval,
-					noteRange,
-					synth,
-					rootNoteIndex,
 				})}
 			</div>
 		);
