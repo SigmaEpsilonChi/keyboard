@@ -21,7 +21,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new WebpackBuildNotifierPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Isomorphic Keyboard'
+      title: 'Isomorphic Keyboard',
+      template: './src/index.html',
     }),
   ],
   module: {

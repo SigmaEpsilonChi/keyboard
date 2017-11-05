@@ -141,8 +141,8 @@ class Cell extends React.Component {
 					pointerEvents: disabled ? 'none' : 'auto',
 					userSelect: 'none',
 					transition: '0.2s',
-				    webkitTapHighlightColor: 'rgba(0, 0, 0, 0);',
-				    mozTapHighlightColor: 'rgba(0, 0, 0, 0)',
+				    WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+				    MozTapHighlightColor: 'rgba(0, 0, 0, 0)',
 				}}
 				>
 				<path d={path}
