@@ -106,8 +106,8 @@ class Cell extends React.Component {
 		return (
 			<g className='cell'
 				// onClick={this.click.bind(this)}
-				onTouchStart={this.down.bind(this)}
-				onTouchEnd={this.up.bind(this)}
+				// onTouchStart={this.down.bind(this)}
+				// onTouchEnd={this.up.bind(this)}
 				onMouseDown={this.down.bind(this)}
 				onMouseUp={this.up.bind(this)}
 				onMouseEnter={this.enter.bind(this)}
