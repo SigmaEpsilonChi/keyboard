@@ -11,6 +11,7 @@ let noteStrings = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G
 let noteStringsFromC = _.map(noteStrings, (s, i) => noteStrings[(i+3)%12]);
 
 let mouseDown = false;
+let touchEvents = false;
 
 class Cell extends React.Component {
 	constructor(props){
@@ -38,19 +39,41 @@ class Cell extends React.Component {
 	click(){
 
 	}
-	enter(){
+	enter(e){
 		if (mouseDown) this.press();
 	}
-	exit(){
+	exit(e){
 		if (this.state.pressed) this.release();
 	}
-	down(){
-		mouseDown = true;
-		this.press();
+	down(e){
+		if (!this.state.pressed) {
+			this.press();
+		}
 	}
-	up(){
-		mouseDown = false;
+	up(e){
 		if (this.state.pressed) this.release();
+	}
+	touchDown(e){
+		touchEvents = true;
+		this.down(e);
+	}
+	touchUp(e){
+		touchEvents = true;
+		this.up(e);
+	}
+	mouseDown(e){
+		if (!touchEvents) {
+			mouseDown = true;
+			this.down(e);
+		}
+		else e.preventDefault();
+	}
+	mouseUp(e){
+		if (!touchEvents) {
+			mouseDown = false;
+			this.up(e);
+		}
+		else e.preventDefault();
 	}
 	press(){
 		this.setState({
@@ -106,10 +129,10 @@ class Cell extends React.Component {
 		return (
 			<g className='cell'
 				// onClick={this.click.bind(this)}
-				// onTouchStart={this.down.bind(this)}
-				// onTouchEnd={this.up.bind(this)}
-				onMouseDown={this.down.bind(this)}
-				onMouseUp={this.up.bind(this)}
+				onTouchStart={this.touchDown.bind(this)}
+				onTouchEnd={this.touchUp.bind(this)}
+				onMouseDown={this.mouseDown.bind(this)}
+				onMouseUp={this.mouseUp.bind(this)}
 				onMouseEnter={this.enter.bind(this)}
 				onMouseLeave={this.exit.bind(this)}
 				transform={'translate('+screenX+', '+screenY+')'}
@@ -118,6 +141,8 @@ class Cell extends React.Component {
 					pointerEvents: disabled ? 'none' : 'auto',
 					userSelect: 'none',
 					transition: '0.2s',
+				    webkitTapHighlightColor: 'rgba(0, 0, 0, 0);',
+				    mozTapHighlightColor: 'rgba(0, 0, 0, 0)',
 				}}
 				>
 				<path d={path}

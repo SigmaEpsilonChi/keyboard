@@ -1,4 +1,14 @@
 .grid {
 	align-self: stretch;
-	
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: none;
+
+}
+
+.grid .cell {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: none;
 }
