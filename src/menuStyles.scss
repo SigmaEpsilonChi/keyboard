@@ -14,7 +14,8 @@ $text-color: #222;
 
 	width: 5vh;
 	height: 5vh;
-	margin: 16px;
+	margin-top: 8px;
+	margin-left: 8px;
 
 	font-size: 80px;
 
@@ -109,7 +110,7 @@ $text-color: #222;
 }
 
 .rudder {
-	margin: 16px;
+	margin: 8px;
 
 	display: flex;
 	flex-direction: row;
@@ -132,15 +133,15 @@ $text-color: #222;
 	background-color: $background-color;
 
 	flex-grow: 3;
-	height: 5vw;
+	height: 60px;
 
-	padding: 16px;
+	padding: 8px;
 }
 
 .rudder > .label > div {
     position: absolute;
 
-	font-size: 5vw;
+	font-size: 50px;
 	color: #FFF;
 
 	width: 100%;
