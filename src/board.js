@@ -2,7 +2,7 @@ import React from 'react';
 import * as d3 from 'd3';
 import _ from 'lodash';
 import Grid from './grid';
-import Toolbar from './toolbar';
+import Menu from './menu';
 import Tone from 'tone';
 
 let synthConfigs = {
@@ -174,7 +174,7 @@ class Board extends React.Component {
 					height: '100%',
 				}}
 				>
-				{React.createElement(Toolbar, {
+				{React.createElement(Menu, {
 					vertical,
 					cellSize,
 					playNote,

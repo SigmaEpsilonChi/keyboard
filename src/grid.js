@@ -113,12 +113,11 @@ class Grid extends React.Component {
 		else console.log("Attempting to place cells, but no container!");
 	}
 	componentDidMount(){
+		console.log("Component mounted. Registering event listener");
+		window.addEventListener('resize', this.place.bind(this));
 		this.place();
 	}
 	mount(div){
-		if (!this.container) {
-			window.addEventListener('resize', this.place.bind(this));
-		}
 
 		this.container = div;
 		if (this.cellSize != this.props.cellSize) this.place();
