@@ -218,9 +218,9 @@ class Board extends React.Component {
 		return (
 			<div className='board'
 				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'stretch',
+					// display: 'flex',
+					// flexDirection: 'column',
+					// alignItems: 'stretch',
 					width: '100%',
 					height: '100%',
 				}}

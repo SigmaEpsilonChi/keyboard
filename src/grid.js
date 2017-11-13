@@ -178,16 +178,19 @@ class Grid extends React.Component {
 		return (
 			<div className='grid'
 				style={{
+					position: 'absolute',
 					flexGrow: 1,
 					userSelect: 'none',
-					position: 'relative',
+					// position: 'relative',
 					overflow: 'hidden',
 					userDrag: 'none',
+					width: '100%',
+					height: '100%',
 				}}
 				ref={this.mount.bind(this)}
 				>
 				<svg style={{
-						position: 'absolute',
+						position: 'relative',
 						top: 0,
 						left: 0,
 					}}

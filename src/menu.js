@@ -58,6 +58,17 @@ class Menu extends React.Component {
 					{React.createElement(Rudder, {label: 'Synth', callback: setSynth, value: synthId, interval: 0})}
 					{React.createElement(Rudder, {label: 'Scale Root', callback: setScaleIndex, value: scaleIndex, valueString: noteStringsFromC[scaleIndex%12]})}
 					{React.createElement(Rudder, {label: 'Lowest Note', callback: setRootNoteIndex, value: rootNoteIndex})}
+					<div className='blurb'>
+						<div>
+							This is a very rough keyboard that I hacked together in a weekend, mainly for my own reference as a music theory tool.
+						</div>
+						<div>
+							I would like to come back and add more synth options, a scale editor, different kinds of grids, and lots of other features to illuminate the geometry of music as explored by theorists like David Lewin, Leonhard Euler, and Stanley Jordan (among others). Unfortunately my time is limited right now, so this is all I have for the moment.
+						</div>
+						<div>
+							Thanks for playing!
+						</div>
+					</div>
 				</div>
 				}
 			</div>
