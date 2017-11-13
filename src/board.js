@@ -168,6 +168,20 @@ class Board extends React.Component {
 			cellSize,
 		});
 	}
+	setIntervalX(xInterval){
+		console.log("Setting xInterval to %s", xInterval);
+		this.setState({
+			...this.state,
+			xInterval,
+		});
+	}
+	setIntervalY(yInterval){
+		console.log("Setting yInterval to %s", yInterval);
+		this.setState({
+			...this.state,
+			yInterval,
+		});
+	}
 	setRootNoteIndex(rootNoteIndex){
 		// rootNoteIndex = Math.max(rootNoteIndex, 0);
 		this.setState({
@@ -213,6 +227,8 @@ class Board extends React.Component {
 		let setCellSize = this.setCellSize.bind(this);
 		let setRootNoteIndex = this.setRootNoteIndex.bind(this);
 		let setScaleIndex = this.setScaleIndex.bind(this);
+		let setIntervalX = this.setIntervalX.bind(this);
+		let setIntervalY = this.setIntervalY.bind(this);
 		let setSynth = this.setSynth.bind(this);
 
 		return (
@@ -253,6 +269,8 @@ class Board extends React.Component {
 
 					setSynth,
 					setCellSize,
+					setIntervalX,
+					setIntervalY,
 					setScaleIndex,
 					setRootNoteIndex,
 				})}

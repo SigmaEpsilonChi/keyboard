@@ -41,6 +41,8 @@ class Menu extends React.Component {
 			setCellSize,
 			setRootNoteIndex,
 			setScaleIndex,
+			setIntervalX,
+			setIntervalY,
 		} = this.props;
 
 		let {
@@ -58,6 +60,8 @@ class Menu extends React.Component {
 					{React.createElement(Rudder, {label: 'Synth', callback: setSynth, value: synthId, interval: 0})}
 					{React.createElement(Rudder, {label: 'Scale Root', callback: setScaleIndex, value: scaleIndex, valueString: noteStringsFromC[scaleIndex%12]})}
 					{React.createElement(Rudder, {label: 'Lowest Note', callback: setRootNoteIndex, value: rootNoteIndex})}
+					{React.createElement(Rudder, {label: 'X ↗ Interval', callback: setIntervalX, value: xInterval})}
+					{React.createElement(Rudder, {label: 'Y ↑ Interval', callback: setIntervalY, value: yInterval})}
 					<div className='blurb'>
 						<div>
 							This is a very rough keyboard that I hacked together in a weekend, mainly for my own reference as a music theory tool.
